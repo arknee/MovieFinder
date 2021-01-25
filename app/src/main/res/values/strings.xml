@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MovieFinder</string>
+    <string name="title_popular">Popular</string>
+    <string name="title_favorite_movies">Favorites</string>
+    <string name="favorite">Favorite</string>
+    <string name="id">Movie ID:</string>
+    <string name="language">Language:</string>
+    <string name="saved_favorite">Favorite Movie:</string>
+    <string name="close">Close</string>
+</resources>
