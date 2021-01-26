@@ -12,7 +12,6 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -40,7 +39,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.1'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-    testImplementation "org.koin:koin-test:2.2.2"
+    testImplementation("org.koin:koin-test:2.2.2") { exclude group: 'org.mockito' }
+    testImplementation 'org.mockito:mockito-core:3.6.0'
 
     implementation "org.koin:koin-core:2.2.2"
     implementation "io.reactivex.rxjava2:rxkotlin:2.4.0"
