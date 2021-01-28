@@ -93,4 +93,9 @@ class HomeFragment : Fragment() {
         binding?.homeRecyclerview?.removeOnScrollListener(recyclerViewScrollListener)
         super.onPause()
     }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
 }

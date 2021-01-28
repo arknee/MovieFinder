@@ -69,4 +69,9 @@ class FavoriteMoviesFragment : Fragment() {
 
         presenter.loadFavoriteMovies()
     }
+
+    override fun onDestroyView() {
+        binding = null
+        super.onDestroyView()
+    }
 }

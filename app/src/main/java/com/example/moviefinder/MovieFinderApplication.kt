@@ -20,11 +20,9 @@ class MovieFinderApplication : Application() {
                 //App Module
                 appMapperModule,
                 presenterModule,
-
                 //Domain Module
                 domainMapperModule,
                 useCaseModule,
-
                 //Data Module
                 dataMapperModule,
                 repositoryModule,
