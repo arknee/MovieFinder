@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface GetMovieUseCase {
 
-    fun getMovie(apiKey: String, movieId: Int): Single<MovieBO>
+    fun getMovie(apiKey: String, imageSize: Int, movieId: Int): Single<MovieBO>
 }

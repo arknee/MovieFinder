@@ -8,6 +8,7 @@ import com.example.domain.usecase.AddFavoriteUseCase
 import com.example.domain.usecase.DeleteFavoriteUseCase
 import com.example.domain.usecase.GetMovieUseCase
 import com.example.moviefinder.BuildConfig
+import com.example.moviefinder.entity.ImageSizesEnum
 import com.example.moviefinder.entity.MovieVO
 import com.example.moviefinder.mapper.MovieMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,7 +28,7 @@ class MainPresenterImpl(
 
     override fun movieClicked(movieId: Int) {
         compositeDisposable.add(
-            getMovieUseCase.getMovie(BuildConfig.API_KEY, movieId)
+            getMovieUseCase.getMovie(BuildConfig.API_KEY, ImageSizesEnum.W500.ordinal, movieId)
                 .subscribeOn(Schedulers.io())
                 .map(movieMapper::map)
                 .observeOn(AndroidSchedulers.mainThread())

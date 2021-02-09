@@ -18,7 +18,7 @@ class MovieMapperImpl: MovieMapper {
     override fun map(input: MovieDAO): MovieDTO {
         return MovieDTO(
             input.id,
-            input.posterPath,
+            input.posterUrl,
             input.originalTitle,
             input.overview,
             input.originalLanguage

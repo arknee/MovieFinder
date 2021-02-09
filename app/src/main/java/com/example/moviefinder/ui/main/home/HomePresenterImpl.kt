@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.domain.usecase.GetPopularMoviesUseCase
 import com.example.moviefinder.BuildConfig
+import com.example.moviefinder.entity.ImageSizesEnum
 import com.example.moviefinder.entity.MovieVO
 import com.example.moviefinder.entity.MoviesPaginationVO
 import com.example.moviefinder.mapper.MovieResponseMapper
@@ -26,6 +27,7 @@ class HomePresenterImpl(
         compositeDisposable.add(
             getPopularMoviesUseCase.getPopularMovies(
                 BuildConfig.API_KEY,
+                ImageSizesEnum.W185.ordinal,
                 moviesPagination?.page ?: 1
             )
                 .subscribeOn(Schedulers.io())

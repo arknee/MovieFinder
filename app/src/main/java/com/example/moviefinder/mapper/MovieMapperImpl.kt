@@ -19,7 +19,7 @@ class MovieMapperImpl : MovieMapper {
     override fun map(input: MovieVO): MovieBO {
         return MovieBO(
             input.id,
-            input.posterPath,
+            input.posterUrl,
             input.originalTitle,
             input.overview,
             input.originalLanguage,

@@ -1,5 +1,6 @@
 package com.example.data.api
 
+import com.example.data.entity.ConfigurationDTO
 import com.example.data.entity.MovieDTO
 import com.example.data.entity.MoviesResponseDTO
 import io.reactivex.Single
@@ -20,4 +21,9 @@ interface MovieApi {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
     ): Single<MovieDTO>
+
+    @GET("configuration")
+    fun getConfiguration(
+        @Query("api_key") apiKey: String
+    ): Single<ConfigurationDTO>
 }

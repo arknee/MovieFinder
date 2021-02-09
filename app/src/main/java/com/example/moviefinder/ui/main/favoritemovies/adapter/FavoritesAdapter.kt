@@ -13,7 +13,7 @@ class FavoritesAdapter(
     private val glide: GlideRequests,
     private val mainPresenter: MainPresenter,
     var items: MutableList<MovieVO> = mutableListOf()
-): RecyclerView.Adapter<MovieViewHolder>() {
+) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         return MovieViewHolder(
@@ -26,7 +26,7 @@ class FavoritesAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(items[holder.adapterPosition])
+        (holder as? MovieViewHolder)?.bind(items[holder.adapterPosition])
     }
 
     override fun getItemCount(): Int {

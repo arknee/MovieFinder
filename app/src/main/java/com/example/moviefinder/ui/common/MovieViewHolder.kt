@@ -1,7 +1,6 @@
 package com.example.moviefinder.ui.common
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.moviefinder.BuildConfig
 import com.example.moviefinder.R
 import com.example.moviefinder.databinding.ItemMovieBinding
 import com.example.moviefinder.di.GlideRequests
@@ -17,7 +16,7 @@ class MovieViewHolder(
 
     fun bind(item: MovieVO) {
         binding.run {
-            glide.load("${BuildConfig.IMAGE_BASE_URL}${item.posterPath}")
+            glide.load(item.posterUrl)
                 .placeholder(R.drawable.ic_baseline_local_movies_24)
                 .error(R.drawable.ic_baseline_local_movies_24)
                 .fitCenter()

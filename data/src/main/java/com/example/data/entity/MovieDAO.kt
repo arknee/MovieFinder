@@ -9,7 +9,7 @@ data class MovieDAO(
     @PrimaryKey
     val id: Int,
     @ColumnInfo(name = "poster_path")
-    val posterPath: String,
+    val posterUrl: String,
     @ColumnInfo(name = "original_title")
     val originalTitle: String,
     @ColumnInfo(name = "overview")

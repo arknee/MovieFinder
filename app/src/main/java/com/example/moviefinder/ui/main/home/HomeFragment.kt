@@ -22,18 +22,20 @@ class HomeFragment : Fragment() {
         fun newInstance(): HomeFragment = HomeFragment()
     }
 
+    private var isLoading = false
     private var binding: FragmentHomeBinding? = null
     private val presenter: HomePresenter by viewModel<HomePresenterImpl>()
     private val mainPresenter: MainPresenter by sharedViewModel<MainPresenterImpl>()
-    private var isLoading = false
     private val recyclerViewScrollListener = object : RecyclerView.OnScrollListener() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             (recyclerView.layoutManager as? LinearLayoutManager)?.let { manager ->
-                if (!isLoading) {
+                if (isLoading) {
                     if (manager.findLastVisibleItemPosition() == manager.itemCount - 1) {
-                        isLoading = true
-                        presenter.loadPopularMovies()
+                        (binding?.homeRecyclerview?.adapter as? MoviesAdapter)?.run {
+                            isLoading = true
+                            presenter.loadPopularMovies()
+                        }
                     }
                 }
             }
@@ -65,8 +67,8 @@ class HomeFragment : Fragment() {
                     items.addAll(it)
                     notifyDataSetChanged()
                 }
+                isLoading = false
             }
-            isLoading = false
         })
 
         mainPresenter.updatedFavoriteStatus().observe(viewLifecycleOwner, { updatedMovie ->
@@ -80,7 +82,6 @@ class HomeFragment : Fragment() {
             }
         })
 
-        isLoading = true
         presenter.loadPopularMovies()
     }
 

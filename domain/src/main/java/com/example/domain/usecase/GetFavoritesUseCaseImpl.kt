@@ -17,6 +17,6 @@ class GetFavoritesUseCaseImpl(
                     isFavorite = true
                 }
             }
-        }.switchIfEmpty(Single.just(emptyList()))
+        }
     }
 }

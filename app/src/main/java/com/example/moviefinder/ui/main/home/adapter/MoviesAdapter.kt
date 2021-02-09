@@ -13,11 +13,15 @@ class MoviesAdapter(
     private val glide: GlideRequests,
     private val mainPresenter: MainPresenter,
     var items: MutableList<MovieVO> = mutableListOf()
-) : RecyclerView.Adapter<MovieViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return MovieViewHolder(
-            ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false),
+            ItemMovieBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            ),
             glide,
             mainPresenter::movieClicked,
             mainPresenter::addFavorite,
@@ -25,8 +29,8 @@ class MoviesAdapter(
         )
     }
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(items[holder.adapterPosition])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as? MovieViewHolder)?.bind(items[holder.layoutPosition])
     }
 
     override fun getItemCount(): Int {

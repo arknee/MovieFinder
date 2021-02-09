@@ -7,25 +7,30 @@ import io.reactivex.Single
 
 class GetMovieUseCaseImpl(
     private val movieRepository: MovieRepository,
-    private val movieMapper: MovieMapper
+    private val movieMapper: MovieMapper,
+    private val getBaseUrlUseCase: GetBaseUrlUseCase
 ) : GetMovieUseCase {
 
-    override fun getMovie(apiKey: String, movieId: Int): Single<MovieBO> {
+    override fun getMovie(apiKey: String, imageSize: Int, movieId: Int): Single<MovieBO> {
         return movieRepository.getMovie(apiKey, movieId)
             .map(movieMapper::map)
             .flatMap { movie ->
-                movieRepository.getFavorites()
-                    .map {
+                getBaseUrlUseCase.getBaseUrl(apiKey).flatMap { imageUrl ->
+                    movieRepository.getFavorites().map {
                         it.map(movieMapper::map)
-                    }.flatMapSingle { favorites ->
+                    }.flatMap { favorites ->
+                        movie.posterPath =
+                            "${imageUrl.secureBaseUrl}${imageUrl.posterSizes[imageSize]}${movie.posterPath}"
                         favorites.find {
                             movie.id == it.id
                         }?.let {
-                            Single.just(it.apply {
+                            movie.apply {
                                 isFavorite = true
-                            })
-                        } ?: Single.just(movie)
+                            }
+                        }
+                        Single.just(movie)
                     }
+                }
             }
     }
 }

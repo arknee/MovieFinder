@@ -5,5 +5,5 @@ import io.reactivex.Single
 
 interface GetPopularMoviesUseCase {
 
-    fun getPopularMovies(apiKey: String, page: Int = 1): Single<MoviesResponseBO>
+    fun getPopularMovies(apiKey: String, imageSize: Int, page: Int = 1): Single<MoviesResponseBO>
 }

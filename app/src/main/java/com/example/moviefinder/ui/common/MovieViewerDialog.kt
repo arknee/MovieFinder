@@ -4,7 +4,6 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.ViewGroup
-import com.example.moviefinder.BuildConfig
 import com.example.moviefinder.R
 import com.example.moviefinder.databinding.DialogMovieViewerBinding
 import com.example.moviefinder.di.GlideRequests
@@ -32,7 +31,7 @@ class MovieViewerDialog(
                 movieIdText.text = it
             }
             movieTitleText.text = movieVO.originalTitle
-            glide.load("${BuildConfig.IMAGE_BASE_URL}${movieVO.posterPath}")
+            glide.load(movieVO.posterUrl)
                 .placeholder(R.drawable.ic_baseline_local_movies_24)
                 .error(R.drawable.ic_baseline_local_movies_24)
                 .fitCenter()

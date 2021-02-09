@@ -7,13 +7,15 @@ import org.koin.dsl.module
 
 val useCaseModule: Module = module {
 
-    single { GetMovieUseCaseImpl(get(), get()) } bind GetMovieUseCase::class
+    single { GetMovieUseCaseImpl(get(), get(), get()) } bind GetMovieUseCase::class
 
-    single { GetPopularMoviesUseCaseImpl(get(), get(), get()) } bind GetPopularMoviesUseCase::class
+    single { GetPopularMoviesUseCaseImpl(get(), get(), get(), get()) } bind GetPopularMoviesUseCase::class
 
     single { AddFavoriteUseCaseImpl(get(), get()) } bind AddFavoriteUseCase::class
 
     single { DeleteFavoriteUseCaseImpl(get(), get()) } bind DeleteFavoriteUseCase::class
 
     single { GetFavoritesUseCaseImpl(get(), get()) } bind GetFavoritesUseCase::class
+
+    single { GetBaseUrlUseCaseImpl(get(), get()) } bind GetBaseUrlUseCase::class
 }

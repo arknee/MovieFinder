@@ -3,6 +3,7 @@ package com.example.domain
 import com.example.data.entity.MovieDTO
 import com.example.data.repository.MovieRepository
 import com.example.domain.mapper.MovieMapper
+import com.example.domain.usecase.GetBaseUrlUseCase
 import com.example.domain.usecase.GetMovieUseCase
 import com.example.domain.usecase.GetMovieUseCaseImpl
 import io.reactivex.Single
@@ -34,12 +35,15 @@ class UseCaseTest {
     private lateinit var movieRepository: MovieRepository
 
     @Mock
+    private lateinit var getBaseUrlUseCase: GetBaseUrlUseCase
+
+    @Mock
     private lateinit var movieMapper: MovieMapper
 
     @Before
     fun before() {
         MockitoAnnotations.openMocks(this)
-        getMovieUseCase = GetMovieUseCaseImpl(movieRepository, movieMapper)
+        getMovieUseCase = GetMovieUseCaseImpl(movieRepository, movieMapper, getBaseUrlUseCase)
     }
 
     @Test
@@ -48,7 +52,7 @@ class UseCaseTest {
         `when`(movieRepository.getMovie(API_KEY, MOVIE_ID)).thenReturn(Single.just(movie))
 
         //THEN
-        getMovieUseCase.getMovie(API_KEY, MOVIE_ID)
+        getMovieUseCase.getMovie(API_KEY, 0, MOVIE_ID)
 
         //WHAT
         verify(movieRepository).getMovie(API_KEY, MOVIE_ID)
